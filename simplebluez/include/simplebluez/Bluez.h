@@ -22,7 +22,7 @@ class Bluez {
     Bluez& operator=(Bluez&&) = delete;
 
     void init();
-    void run_async();
+    void run_async(int timeout_ms = 100);
 
     std::shared_ptr<CustomRoot> root_custom();
     std::shared_ptr<BluezRoot> root_bluez();

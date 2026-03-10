@@ -24,7 +24,7 @@ class Connection {
     void remove_match(std::string rule);
 
     void read_write();
-    void read_write_dispatch();
+    void read_write_dispatch(int timeout_ms = 0);
     Message pop_message();
 
     void send(Message& msg);

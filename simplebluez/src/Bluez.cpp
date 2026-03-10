@@ -24,7 +24,7 @@ void Bluez::init() {
     _custom_root = SimpleDBus::Proxy::create<CustomRoot>(_conn, "org.simplebluez", "/");
 }
 
-void Bluez::run_async() { _conn->read_write_dispatch(); }
+void Bluez::run_async(int timeout_ms) { _conn->read_write_dispatch(timeout_ms); }
 
 std::shared_ptr<CustomRoot> Bluez::root_custom() { return _custom_root; }
 

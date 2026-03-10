@@ -111,7 +111,7 @@ void Connection::read_write() {
     dbus_connection_read_write(_conn, 0);
 }
 
-void Connection::read_write_dispatch() {
+void Connection::read_write_dispatch(int timeout_ms) {
     if (!_initialized) {
         throw Exception::NotInitialized();
     }
@@ -119,7 +119,7 @@ void Connection::read_write_dispatch() {
     std::lock_guard<std::recursive_mutex> lock(_mutex);
 
     // Non-blocking read of the next available message
-    dbus_connection_read_write(_conn, 0);
+    dbus_connection_read_write(_conn, timeout_ms);
 
     // Dispatch incoming messages
     while (dbus_connection_dispatch(_conn) == DBUS_DISPATCH_DATA_REMAINS) {
